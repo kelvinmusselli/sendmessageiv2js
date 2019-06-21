@@ -35,7 +35,7 @@ function App() {
     texto = window.encodeURIComponent(texto);
 
     const newItem = {name: name, phone: phone, comapny: company, giveway: giveway};
-    window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/ /g, '')}&text=${texto}`, '_blank');
+    window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/[(,),\-, ]/g, '')}&text=${texto}`, '_blank');
     console.log(newItem);
   }
 
