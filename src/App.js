@@ -35,7 +35,7 @@ function App() {
     texto = window.encodeURIComponent(texto);
 
     const newItem = {name: name, phone: phone, comapny: company, giveway: giveway};
-    Axios.get(`https://api.whatsapp.com/send?phone=55${phone}&text=${texto}`)
+    window.open(`https://api.whatsapp.com/send?phone=55${phone}&text=${texto}`, '_blank');
     console.log(newItem);
   }
 
@@ -45,7 +45,7 @@ function App() {
         <form onSubmit={_handleSubmit}>
           <div><label>Nome: </label><input value={name} type="text" id="name" name="name" onChange={e => setName(e.target.value)}/></div>
           <div><label>Telefone: </label><InputMask mask="(99) 9 9999-9999"  id="phone" name="phone" onChange={e => setPhone(e.target.value)} /></div>
-          <div><label>Nome: </label><input value={company} type="text" id="company" name="company" onChange={e => setComapny(e.target.value)}/></div>
+          <div><label>Empresa: </label><input value={company} type="text" id="company" name="company" onChange={e => setComapny(e.target.value)}/></div>
           <div>
             <label><input value="1" type="radio" name="giveway" defaultChecked="true" onClick={e => setGiveway(1)} />Sim</label>
             <label><input value="0" type="radio" name="giveway" onClick={e => setGiveway(0)}  />Não</label>
