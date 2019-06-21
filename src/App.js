@@ -29,14 +29,24 @@ function App() {
     componentDidMount();
   }, []);
 
-  const _handleSubmit = (e) => {
+  const _handleSubmit = async (e) => {
     e.preventDefault();
-    let texto = "Texto que eu vou enviar \n com quebras de \n texto.";
-    texto = window.encodeURIComponent(texto);
 
     const newItem = {name: name, phone: phone, comapny: company, giveway: giveway};
+
+    let number = await Axios.post('', newItem);
+
+    let texto = "";
+    if(giveway === 1){
+      texto = `Olá, agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo! \n O seu número para participar do sorteio é: ${number}. Boa Sorte! \n E conforme conversamos, segue o material sobre os Apps e soluções da iv2 .Qualquer dúvida , estamos á disposição :) \n Abraço! \n Grupo iv2`;
+    }else{
+      texto = "Olá, agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo! \n E conforme conversamos, segue o material sobre os Apps e soluções da iv2 .Qualquer dúvida , estamos á disposição :) \n  Abraço! \n Grupo iv2";
+    }
+
+    texto = window.encodeURIComponent(texto);
+
     window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/[(,),\-, ]/g, '')}&text=${texto}`, '_blank');
-    console.log(newItem);
+
   }
 
   return (
