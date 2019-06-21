@@ -53,12 +53,19 @@ function App() {
           <div><input type="submit" value="Salvar"/></div>
         </form>
         <div className="list">
+          <div>
+            <div style={{width: "30%"}}>Nome</div>
+            <div style={{width: "30%"}}>Telefone</div>
+            <div style={{width: "30%"}}>Empresa</div>
+            <div style={{width: "10%"}}>Sorteio</div>
+          </div>
           {listItens.length > 0 && listItens.map((item, key) => {
-            return(<div key={key}>
-              <div>{item.name}</div>
-              <div>{item.phone}</div>
-              <div>{item.comapny}</div>
-              <div>{item.giveway === 1 ? "Sim" : item.giveway === 0 ? "Não" : "erro"}</div>
+            return(
+            <div key={key}>
+              <div style={{width: "30%"}}>{item.name}</div>
+              <div style={{width: "30%"}}>{item.phone}</div>
+              <div style={{width: "30%"}}>{item.comapny}</div>
+              <div style={{width: "10%"}}>{item.giveway === 1 ? "Sim" : item.giveway === 0 ? "Não" : "erro"}</div>
             </div>
             )
           })}
