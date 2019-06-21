@@ -9,7 +9,7 @@ function App() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [company, setComapny] = useState("");
-  const [giveway, setGiveway] = useState(1);
+  const [giveway, setGiveway] = useState(true);
 
   const [listItens, setListItens] = useState([{name: "Jessiley 1", phone: "(11) 9 4767:3811 ", company: "TOTVS", givewayParticipant: 0}]);
 
@@ -27,7 +27,7 @@ function App() {
     const newItem = {name: name, phone: phone, comapny: company, givewayParticipant: giveway};
 
     let number = await Axios.post('http://localhost:3333/api/v1/contact', newItem);
-
+    console.log(number);
     let texto = "";
     if(giveway === 1){
       texto = `Olá, agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo! \n O seu número para participar do sorteio é: ${number}. Boa Sorte! \n E conforme conversamos, segue o material sobre os Apps e soluções da iv2 .Qualquer dúvida , estamos á disposição :) \n Abraço! \n Grupo iv2`;
@@ -45,17 +45,17 @@ function App() {
     <div className="App">
       <header className="App-header">
         <form onSubmit={_handleSubmit}>
-          <div className="form-group"><label for="name">Nome: </label><input value={name} type="text" id="name" name="name" onChange={e => setName(e.target.value)} class="form-control" /></div>
-          <div className="form-group"><label for="phone">Telefone: </label><InputMask mask="(99) 9 9999-9999"  id="phone" name="phone" onChange={e => setPhone(e.target.value)} class="form-control" /></div>
-          <div className="form-group"><label for="company">Empresa: </label><input value={company} type="text" id="company" name="company" onChange={e => setComapny(e.target.value)} class="form-control" /></div>
+          <div className="form-group"><label htmlFor="name">Nome: </label><input value={name} type="text" id="name" name="name" onChange={e => setName(e.target.value)} className="form-control" /></div>
+          <div className="form-group"><label htmlFor="phone">Telefone: </label><InputMask mask="(99) 9 9999-9999"  id="phone" name="phone" onChange={e => setPhone(e.target.value)} className="form-control" /></div>
+          <div className="form-group"><label htmlFor="company">Empresa: </label><input value={company} type="text" id="company" name="company" onChange={e => setComapny(e.target.value)} className="form-control" /></div>
           <div className="form-group form-check">
             <label>Quer participar do Sorteio?</label><br />
-            <label for="givewaySim"><input value="1" type="radio" name="giveway" id="givewaySim" defaultChecked="true" onClick={e => setGiveway(1)} />Sim</label>
-            <label for="givewayNao"><input value="0" type="radio" name="giveway" id="givewayNao"  onClick={e => setGiveway(0)}  />Não</label>
+            <label htmlFor="givewaySim"><input value="true" type="radio" name="giveway" id="givewaySim" defaultChecked="true" onClick={e => setGiveway(true)} />Sim</label>
+            <label htmlFor="givewayNao"><input value="false" type="radio" name="giveway" id="givewayNao"  onClick={e => setGiveway(false)}  />Não</label>
           </div>
           <div><input type="submit" value="Salvar" className="btn btn-primary" /></div>
         </form>
-        <table class="table">
+        <table className="table">
 
           <thead>
             <tr>
