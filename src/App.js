@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import InputMask from 'react-input-mask';
 import Axios from 'axios';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
 
@@ -10,20 +11,11 @@ function App() {
   const [company, setComapny] = useState("");
   const [giveway, setGiveway] = useState(1);
 
-  const [listItens, setListItens] = useState([
-    {name: "Jessiley 1", phone: "(11) 9 4767:3811 ", company: "TOTVS", giveway: 0}, 
-    {name: "Jessiley 2", phone: "(11) 9 4767:3822 ", company: "Vipal", giveway: 1}, 
-    {name: "Jessiley 3", phone: "(11) 9 4767:3833 ", company: "Grupo IV2", giveway: 1}, 
-    {name: "Jessiley 4", phone: "(11) 9 4767:3844 ", company: "Outro", giveway: 1}]);
+  const [listItens, setListItens] = useState([{name: "Jessiley 1", phone: "(11) 9 4767:3811 ", company: "TOTVS", givewayParticipant: 0}]);
+
   useEffect(() => {
     const componentDidMount = async () => {
-      setTimeout(() => {
-        setListItens([
-          {name: "Jessiley 1", phone: "(11) 9 4767:3811 ", company: "TOTVS", giveway: 1}, 
-          {name: "Jessiley 2", phone: "(11) 9 4767:3822 ", company: "Vipal", giveway: 0}, 
-          {name: "Jessiley 3", phone: "(11) 9 4767:3833 ", company: "Grupo IV2", giveway: 1}, 
-          {name: "Jessiley 5", phone: "(11) 9 4767:3844 ", company: "Outro", giveway: 1}]);
-      }, 2000);
+      setListItens(await Axios.get('http://localhost:3333/api/v1/contact'));
     }
     
     componentDidMount();
@@ -32,9 +24,9 @@ function App() {
   const _handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newItem = {name: name, phone: phone, comapny: company, giveway: giveway};
+    const newItem = {name: name, phone: phone, comapny: company, givewayParticipant: giveway};
 
-    let number = await Axios.post('', newItem);
+    let number = await Axios.post('http://localhost:3333/api/v1/contact', newItem);
 
     let texto = "";
     if(giveway === 1){
@@ -53,33 +45,42 @@ function App() {
     <div className="App">
       <header className="App-header">
         <form onSubmit={_handleSubmit}>
-          <div><label>Nome: </label><input value={name} type="text" id="name" name="name" onChange={e => setName(e.target.value)}/></div>
-          <div><label>Telefone: </label><InputMask mask="(99) 9 9999-9999"  id="phone" name="phone" onChange={e => setPhone(e.target.value)} /></div>
-          <div><label>Empresa: </label><input value={company} type="text" id="company" name="company" onChange={e => setComapny(e.target.value)}/></div>
-          <div>
-            <label><input value="1" type="radio" name="giveway" defaultChecked="true" onClick={e => setGiveway(1)} />Sim</label>
-            <label><input value="0" type="radio" name="giveway" onClick={e => setGiveway(0)}  />Não</label>
+          <div className="form-group"><label for="name">Nome: </label><input value={name} type="text" id="name" name="name" onChange={e => setName(e.target.value)} class="form-control" /></div>
+          <div className="form-group"><label for="phone">Telefone: </label><InputMask mask="(99) 9 9999-9999"  id="phone" name="phone" onChange={e => setPhone(e.target.value)} class="form-control" /></div>
+          <div className="form-group"><label for="company">Empresa: </label><input value={company} type="text" id="company" name="company" onChange={e => setComapny(e.target.value)} class="form-control" /></div>
+          <div className="form-group form-check">
+            <label>Quer participar do Sorteio?</label><br />
+            <label for="givewaySim"><input value="1" type="radio" name="giveway" id="givewaySim" defaultChecked="true" onClick={e => setGiveway(1)} />Sim</label>
+            <label for="givewayNao"><input value="0" type="radio" name="giveway" id="givewayNao"  onClick={e => setGiveway(0)}  />Não</label>
           </div>
-          <div><input type="submit" value="Salvar"/></div>
+          <div><input type="submit" value="Salvar" className="btn btn-primary" /></div>
         </form>
-        <div className="list">
-          <div>
-            <div style={{width: "30%"}}>Nome</div>
-            <div style={{width: "30%"}}>Telefone</div>
-            <div style={{width: "30%"}}>Empresa</div>
-            <div style={{width: "10%"}}>Sorteio</div>
-          </div>
+        <table class="table">
+
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Empresa</th>
+              <th scope="col">Sorteio</th>
+            </tr>
+          </thead>
+          < tbody>
           {listItens.length > 0 && listItens.map((item, key) => {
             return(
-            <div key={key}>
-              <div style={{width: "30%"}}>{item.name}</div>
-              <div style={{width: "30%"}}>{item.phone}</div>
-              <div style={{width: "30%"}}>{item.company}</div>
-              <div style={{width: "10%"}}>{item.giveway === 1 ? "Sim" : item.giveway === 0 ? "Não" : "erro"}</div>
-            </div>
+             
+              <tr key={key}>
+                <th scope="row">{item._id}</th>
+                <td>{item.name}</td>
+                <td>{item.phone}</td>
+                <td>{item.company}</td>
+                <td>{item.givewayParticipant === 1 ? "Sim" : item.givewayParticipant === 0 ? "Não" : "erro"}</td>
+              </tr>
             )
           })}
-        </div>
+          </tbody>
+        </table>
       </header>
     </div>
   );
