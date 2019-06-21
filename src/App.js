@@ -64,7 +64,7 @@ function App() {
             <div key={key}>
               <div style={{width: "30%"}}>{item.name}</div>
               <div style={{width: "30%"}}>{item.phone}</div>
-              <div style={{width: "30%"}}>{item.comapny}</div>
+              <div style={{width: "30%"}}>{item.company}</div>
               <div style={{width: "10%"}}>{item.giveway === 1 ? "Sim" : item.giveway === 0 ? "Não" : "erro"}</div>
             </div>
             )
