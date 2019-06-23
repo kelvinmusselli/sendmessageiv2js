@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import InputMask from 'react-input-mask';
 import Axios from 'axios';
 import ModalContext from '../../store/ModalContext';
