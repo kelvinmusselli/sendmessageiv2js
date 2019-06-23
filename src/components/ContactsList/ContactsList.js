@@ -46,7 +46,7 @@ function ContactsList() {
                 {
                   contact.givewayParticipant &&
                   <div className="giveaway-number-container">
-                    n° {contact.giveawayNumber}2
+                    n° {contact.giveawayNumber}
                   </div>
                 }
               </div>
