@@ -51,6 +51,9 @@
   display: flex;
   height: 64px;
   align-items: center;
+  font-size: 16px;
+  letter-spacing: 0.015rem;
+  line-height: 24px;
 }
 
 .contact-inital {
@@ -68,6 +71,11 @@
 
 .contact-info-container {
   width: 100%;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 8px;
+  font-weight: bold;
 }
 
 .giveaway-number-container {
@@ -85,6 +93,10 @@
   line-height: 18px;
   letter-spacing: 0.04rem;
   color: #757575;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+  font-weight: normal;
 }
 
 .info.phone {

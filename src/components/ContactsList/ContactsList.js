@@ -22,6 +22,20 @@ function ContactsList() {
     document.querySelector('body').style.overflowY = showModal ? 'hidden' : 'auto';
   }, [showModal]);
 
+  function sendMessage({ name, phone, giveawayNumber, givewayParticipant }) {
+    let message = '';
+
+    message = window.encodeURIComponent(
+      'Olá ' + name + ',\n\n' +
+      'Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n' +
+      (givewayParticipant ? 'O seu número para participar do sorteio é: ' + giveawayNumber + '. Boa Sorte!\n' : '') + 
+      'E conforme conversamos, segue o material sobre os Apps e soluções da iv2. Qualquer dúvida , estamos á disposição :)' +
+      '\n\nAbraço,\nGrupo iv2'
+    );
+
+    window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/[(,),\-, ]/g, '')}&text=${message}`, '_blank');
+  }
+
   return (
     <>
       <div className="header-list">
@@ -32,7 +46,7 @@ function ContactsList() {
         {
           contactsList.map(contact => {
             return (
-              <div className="contact-list-item" key={contact._id}>
+              <div className="contact-list-item" key={contact._id} onClick={() => sendMessage(contact)}>
                 <div>
                   <div className="contact-inital">
                     {
