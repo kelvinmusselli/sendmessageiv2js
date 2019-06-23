@@ -11,7 +11,7 @@ function ContactsList() {
 
   useEffect(() => {
     const componentDidMount = async () => {
-      const contacts = await Axios.get('http://localhost:3100/api/v1/contact');
+      const contacts = await Axios.get('https://send-message-iv2.herokuapp.com/api/v1/contact');
       setContactsList(contacts.data);
     }
     

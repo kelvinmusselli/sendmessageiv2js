@@ -28,7 +28,7 @@ function NewContactForm() {
 
     e.preventDefault();
 
-    contact = await Axios.post('http://localhost:3100/api/v1/contact', newItem);
+    contact = await Axios.post('https://send-message-iv2.herokuapp.com/api/v1/contact', newItem);
     
     message = window.encodeURIComponent(
       'Olá ' + contact.data.name + ',\n\n' +
