@@ -10,13 +10,14 @@ function NewContactForm() {
   const [phone, setPhone] = useState('');
   const [company, setCompany] = useState('');
   const [givewayParticipant, setGivewayParticipant] = useState(true);
+  const [sending, setSending] = useState(false);
   const { setShowModal } = useContext(ModalContext);
   const { contactsList, setContactsList } = useContext(ContactContext);
 
   function addContactsToList(addedContact) {
     const contactsArray = contactsList;
     
-    contactsArray.push(addedContact);
+    contactsArray.unshift(addedContact);
     
     setContactsList(contactsArray);
   }
@@ -27,6 +28,8 @@ function NewContactForm() {
     let message = '';
 
     e.preventDefault();
+
+    setSending(true);
 
     contact = await Axios.post('https://send-message-iv2.herokuapp.com/api/v1/contact', newItem);
     
@@ -45,6 +48,7 @@ function NewContactForm() {
     setPhone('');
     setCompany('');
     setGivewayParticipant(true);
+    setSending(false);
     setShowModal(false);
   }
 
@@ -86,7 +90,9 @@ function NewContactForm() {
         </div>
         
         <div className="button-container">
-          <input type="submit" value="Enviar" />
+          <button type="submit" disabled={sending}>
+            {sending ? 'Enviado...' : 'Enviar'}
+          </button>
         </div>
       </form>
     </>

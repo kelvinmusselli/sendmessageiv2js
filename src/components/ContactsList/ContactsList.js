@@ -8,10 +8,13 @@ import './ContactsList.css';
 function ContactsList() {
   const [contactsList, setContactsList] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const componentDidMount = async () => {
       const contacts = await Axios.get('https://send-message-iv2.herokuapp.com/api/v1/contact');
+      
+      setLoading(false);
       setContactsList(contacts.data);
     }
     
@@ -39,7 +42,7 @@ function ContactsList() {
   return (
     <>
       <div className="header-list">
-        Contatos ({contactsList.length})
+        {loading ? 'Carregando contatos...' : `Contatos (${contactsList.length})`}
       </div>
 
       <div className="contact-list">
