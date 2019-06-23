@@ -1,4 +1,4 @@
-.header {
+.header-list {
   display: flex;
   padding: 16px;
   align-items: center;
@@ -14,6 +14,7 @@
   width: 100%;
   top: 100vh;
   bottom: 0;
+  overflow: auto;
   background-color: #fff;
   transition: top .2s ease-in-out;
   box-shadow: 0 -3px 12px rgba(0, 0, 0, .2);

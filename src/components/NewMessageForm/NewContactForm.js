@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import InputMask from 'react-input-mask';
 import Axios from 'axios';
 import ModalContext from '../../store/ModalContext';
@@ -8,7 +8,7 @@ import './NewContactForm.css';
 function NewContactForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [company, setComapny] = useState('');
+  const [company, setCompany] = useState('');
   const [givewayParticipant, setGivewayParticipant] = useState(true);
   const { setShowModal } = useContext(ModalContext);
   const { contactsList, setContactsList } = useContext(ContactContext);
@@ -41,6 +41,10 @@ function NewContactForm() {
     window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/[(,),\-, ]/g, '')}&text=${message}`, '_blank');
 
     addContactsToList(contact.data);
+    setName('');
+    setPhone('');
+    setCompany('');
+    setGivewayParticipant(true);
     setShowModal(false);
   }
 
@@ -53,24 +57,24 @@ function NewContactForm() {
             <path d="M0 0h24v24H0z" fill="none"/>
           </svg>
         </div>
-        Nova mensagem
+        Novo contato
       </div>
 
-      <form onSubmit={_handleSubmit}>
+      <form autoComplete="off" onSubmit={_handleSubmit}>
         <div className="form-inputs">
           <div className="form-group">
             <label htmlFor="phone">Telefone</label>
-            <InputMask type="text" mask="(99) 9 9999-9999" id="phone" name="phone" onChange={e => setPhone(e.target.value)} className="form-control" />
+            <InputMask value={phone} type="tel" mask="(99) 9 9999-9999" id="phone" name="phone" onChange={e => setPhone(e.target.value)} required />
           </div>
 
           <div className="form-group">
             <label htmlFor="name">Nome</label>
-            <input value={name} type="text" id="name" name="name" onChange={e => setName(e.target.value)} className="form-control" />
+            <input value={name} type="text" id="name" name="name" onChange={e => setName(e.target.value)} required />
           </div>
 
           <div className="form-group">
             <label htmlFor="company">Empresa</label>
-            <input value={company} type="text" id="company" name="company" onChange={e => setComapny(e.target.value)} className="form-control" />
+            <input value={company} type="text" id="company" name="company" onChange={e => setCompany(e.target.value)} required />
           </div>
 
           <div className="form-group form-check">

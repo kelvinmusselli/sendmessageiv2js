@@ -18,9 +18,13 @@ function ContactsList() {
     componentDidMount();
   }, []);
 
+  useEffect(() => {
+    document.querySelector('body').style.overflowY = showModal ? 'hidden' : 'auto';
+  }, [showModal]);
+
   return (
     <>
-      <div className="header">
+      <div className="header-list">
         Contatos ({contactsList.length})
       </div>
 
@@ -55,7 +59,7 @@ function ContactsList() {
         }
       </div>
 
-      <button type="button" className="fab" onClick={() => setShowModal('show')}>
+      <button type="button" className="fab" onClick={() => setShowModal(true)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#fff"/>
           <path d="M0 0h24v24H0z" fill="none"/>
