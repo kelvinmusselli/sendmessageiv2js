@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/sendmessageiv2js/static/css/main.7b89f0f5.chunk.css",
-    "main.js": "/sendmessageiv2js/static/js/main.e51957df.chunk.js",
-    "main.js.map": "/sendmessageiv2js/static/js/main.e51957df.chunk.js.map",
+    "main.js": "/sendmessageiv2js/static/js/main.6acd0606.chunk.js",
+    "main.js.map": "/sendmessageiv2js/static/js/main.6acd0606.chunk.js.map",
     "runtime~main.js": "/sendmessageiv2js/static/js/runtime~main.fff6b61f.js",
     "runtime~main.js.map": "/sendmessageiv2js/static/js/runtime~main.fff6b61f.js.map",
     "static/js/2.131e0aa5.chunk.js": "/sendmessageiv2js/static/js/2.131e0aa5.chunk.js",
     "static/js/2.131e0aa5.chunk.js.map": "/sendmessageiv2js/static/js/2.131e0aa5.chunk.js.map",
     "index.html": "/sendmessageiv2js/index.html",
-    "precache-manifest.c8f9a0840e29bace7843a80ce67a964a.js": "/sendmessageiv2js/precache-manifest.c8f9a0840e29bace7843a80ce67a964a.js",
+    "precache-manifest.7bd32db3746ce6d687deb36b181eb73e.js": "/sendmessageiv2js/precache-manifest.7bd32db3746ce6d687deb36b181eb73e.js",
     "service-worker.js": "/sendmessageiv2js/service-worker.js",
     "static/css/main.7b89f0f5.chunk.css.map": "/sendmessageiv2js/static/css/main.7b89f0f5.chunk.css.map"
   }
