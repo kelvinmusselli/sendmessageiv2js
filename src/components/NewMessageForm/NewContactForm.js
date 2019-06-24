@@ -4,6 +4,7 @@ import Axios from 'axios';
 import ModalContext from '../../store/ModalContext';
 import ContactContext from '../../store/ContactContext';
 import './NewContactForm.css';
+var qs = require('qs');
 
 function NewContactForm() {
   const [name, setName] = useState('');
@@ -24,8 +25,8 @@ function NewContactForm() {
     setContactsList(contactsArray);
   }
 
-  function _handleSubmit(e) {
-    const newItem = { name, phone, company, givewayParticipant };
+  async function _handleSubmit(e) {
+    const newItem = qs.stringify({ name, phone, company, givewayParticipant });
     let contact = {};
     let message = '';
 
@@ -35,36 +36,30 @@ function NewContactForm() {
 
     setTeste2(newItem)
 
-    Axios.post('https://send-message-iv2.herokuapp.com/api/v1/contact', newItem)
-      .then(function (response) {
-        setTeste(response)
-      })
-      .catch(function (error) {
-        setTeste(error)
-      });
+    contact = await Axios.post('https://send-message-iv2.herokuapp.com/api/v1/contact', newItem)
     
-    // message = window.encodeURIComponent(
-    //   'Olá ' + contact.data.name + ',\n\n' +
-    //   'Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n' +
-    //   (givewayParticipant ? 'O seu número para participar do sorteio é: ' + contact.data.giveawayNumber + '. Boa Sorte!\n' : '') + 
-    //   'E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n' +
-    //   'Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n' +
-    //   'Easy Project https://www.youtube.com/watch?v=jaeVf8NhJCY&t\n' +
-    //   'Easy Calendar https://www.youtube.com/watch?v=VzMcqAoVGt0&t\n' +
-    //   'Make it Easy https://www.youtube.com/watch?v=b3a3gfTEtpo&t\n\n' +
-    //   'Qualquer dúvida , estamos á disposição :)' +
-    //   '\n\nAbraço,\nGrupo iv2'
-    // );
+    message = window.encodeURIComponent(
+      'Olá ' + contact.data.name + ',\n\n' +
+      'Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n' +
+      (givewayParticipant ? 'O seu número para participar do sorteio é: ' + contact.data.giveawayNumber + '. Boa Sorte!\n' : '') + 
+      'E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n' +
+      'Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n' +
+      'Easy Project https://www.youtube.com/watch?v=jaeVf8NhJCY&t\n' +
+      'Easy Calendar https://www.youtube.com/watch?v=VzMcqAoVGt0&t\n' +
+      'Make it Easy https://www.youtube.com/watch?v=b3a3gfTEtpo&t\n\n' +
+      'Qualquer dúvida , estamos á disposição :)' +
+      '\n\nAbraço,\nGrupo iv2'
+    );
 
-    // window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/[(,),\-, ]/g, '')}&text=${message}`, '_blank');
-
-    // addContactsToList(contact.data);
+    addContactsToList(contact.data);
     setName('');
     setPhone('');
     setCompany('');
     setGivewayParticipant(true);
     setSending(false);
-    // setShowModal(false);
+    setShowModal(false);
+
+    window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/[(,),\-, ]/g, '')}&text=${message}`, '_blank');
   }
 
   return (
@@ -76,7 +71,7 @@ function NewContactForm() {
             <path d="M0 0h24v24H0z" fill="none"/>
           </svg>
         </div>
-        Novo contato 2
+        Novo contato
       </div>
 
       <form autoComplete="off" onSubmit={_handleSubmit}>
@@ -103,14 +98,10 @@ function NewContactForm() {
             </label>
           </div>
         </div>
-
-        {JSON.stringify(teste2)}
-        -------------------------------------------------
-        {JSON.stringify(teste)}
         
         <div className="button-container">
           <button type="submit" disabled={sending}>
-            {sending ? 'agora vai...' : 'Enviar'}
+            {sending ? 'Enviando...' : 'Enviar'}
           </button>
         </div>
       </form>
