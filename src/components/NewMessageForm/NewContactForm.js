@@ -44,7 +44,7 @@ function NewContactForm() {
       (givewayParticipant ? 'O seu número para participar do sorteio é: ' + contact.data.giveawayNumber + '. Boa Sorte!\n' : '') + 
       'E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n' +
       'Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n' +
-      'Easy Flows https://www.youtube.com/watch?v=cPg9qQ6KTGc&list=PL9e5jlUEjJCmuXox8bNEcStXZwbZ2GebF\n' +
+      'Easy Flow https://www.youtube.com/watch?v=cPg9qQ6KTGc&list=PL9e5jlUEjJCmuXox8bNEcStXZwbZ2GebF\n' +
       'Make it Easy https://www.youtube.com/watch?v=b3a3gfTEtpo&t\n\n' +
       'Qualquer dúvida , estamos á disposição :)' +
       '\n\nAbraço,\nGrupo iv2'
