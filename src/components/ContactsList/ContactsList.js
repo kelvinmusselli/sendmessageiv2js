@@ -3,6 +3,7 @@ import Axios from 'axios';
 import NewMessageForm from '../NewMessageForm/NewContactForm';
 import { ModalProvider } from '../../store/ModalContext';
 import { ContactProvider } from '../../store/ContactContext';
+import { API_ROOT } from '../../api-config';
 import './ContactsList.css';
 
 function ContactsList() {
@@ -12,7 +13,7 @@ function ContactsList() {
 
   useEffect(() => {
     const componentDidMount = async () => {
-      const contacts = await Axios.get('https://send-message-iv2.herokuapp.com/api/v1/contact');
+      const contacts = await Axios.get(`${API_ROOT}/contact`);
       
       setLoading(false);
       setContactsList(contacts.data);
@@ -29,15 +30,16 @@ function ContactsList() {
     let message = '';
 
     message = window.encodeURIComponent(
-      'Olá ' + name + ',\n\n' +
-      'Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n' +
-      (givewayParticipant ? 'O seu número para participar do sorteio é: ' + giveawayNumber + '. Boa Sorte!\n' : '') + 
-      'E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n' +
-      'Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n' +
-      'Easy Flow https://www.youtube.com/watch?v=cPg9qQ6KTGc&list=PL9e5jlUEjJCmuXox8bNEcStXZwbZ2GebF\n' +
-      'Make it Easy https://www.youtube.com/watch?v=b3a3gfTEtpo&t\n\n' +
-      'Qualquer dúvida , estamos á disposição :)' +
-      '\n\nAbraço,\nGrupo iv2'
+      'PARABÉNS\n\n' +
+      'Durante o Universo TOTVS, o Grupo iv2 estava sorteando 30 vagas para um workshop de React com o Fluig com os nossos especialistas e você foi um dos ganhadores!' +
+      'Segue informações:\n\n' +
+      'Data: 12/07/2019\n' +
+      'Horário: 09h00 \n' +
+      'Endereço: Rua Paulino Corado, 20 - Sala 110 - Jardim Santa Teresa, Jundiaí - SP\n\n' +
+      'O vídeo do sorteio está em nossa página do Linkedin: https://www.linkedin.com/company/iv2-tecnologia-e-sistemas/?viewAsMember=true\n\n' +
+      'Venha aprender como conseguimos turbinar novas aplicações do fluig com esta tecnologia!\n\n' +
+      'Por gentileza, confirmar presença até o dia 05/07.\n\n' +
+      'Abraços.'
     );
 
     window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/[(,),\-, ]/g, '')}&text=${message}`, '_blank');

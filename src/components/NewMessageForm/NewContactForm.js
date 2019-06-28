@@ -1,21 +1,21 @@
 import React, { useState, useContext } from 'react';
+import qs from 'qs';
 import InputMask from 'react-input-mask';
 import Axios from 'axios';
 import ModalContext from '../../store/ModalContext';
 import ContactContext from '../../store/ContactContext';
+import { API_ROOT } from '../../api-config';
 import './NewContactForm.css';
-var qs = require('qs');
 
 function NewContactForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [company, setCompany] = useState('');
+  // const [observation, setObservation] = useState('');
   const [givewayParticipant, setGivewayParticipant] = useState(true);
   const [sending, setSending] = useState(false);
   const { setShowModal } = useContext(ModalContext);
   const { contactsList, setContactsList } = useContext(ContactContext);
-  const [teste, setTeste] = useState({});
-  const [teste2, setTeste2] = useState({});
 
   function addContactsToList(addedContact) {
     const contactsArray = contactsList;
@@ -34,9 +34,7 @@ function NewContactForm() {
 
     setSending(true);
 
-    setTeste2(newItem)
-
-    contact = await Axios.post('https://send-message-iv2.herokuapp.com/api/v1/contact', newItem)
+    contact = await Axios.post(`${API_ROOT}/contact`, newItem)
     
     message = window.encodeURIComponent(
       'Olá ' + contact.data.name + ',\n\n' +
@@ -46,7 +44,7 @@ function NewContactForm() {
       'Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n' +
       'Easy Flow https://www.youtube.com/watch?v=cPg9qQ6KTGc&list=PL9e5jlUEjJCmuXox8bNEcStXZwbZ2GebF\n' +
       'Make it Easy https://www.youtube.com/watch?v=b3a3gfTEtpo&t\n\n' +
-      'Qualquer dúvida , estamos á disposição :)' +
+      'Qualquer dúvida , estamos à disposição :)' +
       '\n\nAbraço,\nGrupo iv2'
     );
 
@@ -89,6 +87,11 @@ function NewContactForm() {
             <label htmlFor="company">Empresa</label>
             <input value={company} type="text" id="company" name="company" onChange={e => setCompany(e.target.value)} required />
           </div>
+
+          {/* <div className="form-group">
+            <label htmlFor="observation">Observação</label>
+            <textarea value={observation} id="observation" name="observation" onChange={e => setObservation(e.target.value)}></textarea>
+          </div> */}
 
           <div className="form-group form-check">
             <label htmlFor="giveaway" className="checkbox">
