@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
+import { Route, Link } from 'react-router-dom';
 import NewMessageForm from '../NewMessageForm/NewContactForm';
-import { ModalProvider } from '../../store/ModalContext';
 import { ContactProvider } from '../../store/ContactContext';
-import { API_ROOT } from '../../api-config';
-import './ContactsList.css';
+import { API_ROOT } from '../../config/api-config';
+import styles from './ContactsList.module.scss';
 
 function ContactsList() {
   const [contactsList, setContactsList] = useState([]);
-  const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,11 +21,7 @@ function ContactsList() {
     componentDidMount();
   }, []);
 
-  useEffect(() => {
-    document.querySelector('body').style.overflowY = showModal ? 'hidden' : 'auto';
-  }, [showModal]);
-
-  function sendMessage({ name, phone, giveawayNumber, givewayParticipant }) {
+  function sendMessage({ phone }) {
     let message = '';
 
     message = window.encodeURIComponent(
@@ -47,32 +42,30 @@ function ContactsList() {
 
   return (
     <>
-      <div className="header-list">
+      <div className={styles.headerList}>
         {loading ? 'Carregando contatos...' : `Contatos (${contactsList.length})`}
       </div>
 
-      <div className="contact-list">
+      <div className={styles.contactList}>
         {
           contactsList.map(contact => {
             return (
-              <div className="contact-list-item" key={contact._id} onClick={() => sendMessage(contact)}>
+              <div className={styles.contactListItem} key={contact._id} onClick={() => sendMessage(contact)}>
                 <div>
-                  <div className="contact-inital">
-                    {
-                      contact.name.substr(0, 1)
-                    }
+                  <div className={styles.contactInital}>
+                    {contact.name.substr(0, 1).toUpperCase()}
                   </div>
                 </div>
 
-                <div className="contact-info-container">
+                <div className={styles.contactInfoContainer}>
                   {contact.name}
-                  <div className="info">{contact.company}</div>
-                  <div className="info phone">{contact.phone}</div>
+                  <div className={styles.info}>{contact.company}</div>
+                  <div className={styles.phone}>{contact.phone}</div>
                 </div>
                 
                 {
                   contact.givewayParticipant &&
-                  <div className="giveaway-number-container">
+                  <div className={styles.giveawayNumberContainer}>
                     n° {contact.giveawayNumber}
                   </div>
                 }
@@ -82,22 +75,16 @@ function ContactsList() {
         }
       </div>
 
-      <button type="button" className="fab" onClick={() => setShowModal(true)}>
+      <Link to="/contacts/new" className={styles.fab}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#fff"/>
           <path d="M0 0h24v24H0z" fill="none"/>
         </svg>
-      </button>
+      </Link>
 
-      <ModalProvider value={{ setShowModal }}>
-        <div id="modalContainer" onClick={e => e.target.id === 'modalContainer' && setShowModal(false)} className={'modal-container' + (showModal ? ' visible' : '')}>
-          <div className={'form-modal' + (showModal ? ' visible' : '')}>
-            <ContactProvider value={{ contactsList, setContactsList }}>
-              <NewMessageForm />
-            </ContactProvider>
-          </div>
-        </div>
-      </ModalProvider>
+      <ContactProvider value={{ contactsList, setContactsList }}>
+        <Route path="/contacts/new" component={NewMessageForm} />
+      </ContactProvider>
     </>
   );
 }

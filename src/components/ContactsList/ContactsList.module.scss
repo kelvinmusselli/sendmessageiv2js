@@ -1,0 +1,89 @@
+.headerList {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  font-size: 20px;
+  letter-spacing: 0.015rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+.contactList {
+  padding-bottom: 80px;
+
+  .contactListItem {
+    padding: 8px 8px 8px 16px;
+    display: flex;
+    height: 64px;
+    align-items: center;
+    font-size: 16px;
+    letter-spacing: 0.015rem;
+    line-height: 24px;
+  }
+
+  .contactInital {
+    background-color: #c5cae9;
+    color: #3f51b5;
+    height: 48px;
+    width: 48px;
+    margin-right: 16px;
+    border-radius: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+}
+
+.contactInfoContainer {
+  width: 100%;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 8px;
+  font-weight: bold;
+
+  .info {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.04rem;
+    color: #757575;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+    font-weight: normal;
+  }
+  
+  .phone {
+    @extend .info;
+    font-style: italic;
+  }
+}
+
+.giveawayNumberContainer {
+  background-color: #e1bee7;
+  color: #9c27b0;
+  padding: 0px 6px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.fab {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .2);
+  right: 16px;
+  bottom: 16px;
+  background-image: linear-gradient(to right bottom, #3494E6, #EC6EAD);
+  -webkit-tap-highlight-color: transparent;
+  outline-width: 0;
+}

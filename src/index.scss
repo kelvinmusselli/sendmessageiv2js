@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-body, input {
+body,
+input,
+textarea {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   letter-spacing: 0.025rem;
   color: #212121;
   line-height: 21px;
-}
-
-input:focus, button {
-  outline-width: 0;
 }

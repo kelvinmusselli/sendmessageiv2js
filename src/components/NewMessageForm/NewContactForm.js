@@ -1,32 +1,35 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import ContentEditable from 'react-contenteditable'
 import qs from 'qs';
 import InputMask from 'react-input-mask';
 import Axios from 'axios';
-import ModalContext from '../../store/ModalContext';
 import ContactContext from '../../store/ContactContext';
-import { API_ROOT } from '../../api-config';
-import './NewContactForm.css';
+import { API_ROOT } from '../../config/api-config';
+import styles from './NewContactForm.module.scss';
 
-function NewContactForm() {
+function NewContactForm(props) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [company, setCompany] = useState('');
-  // const [observation, setObservation] = useState('');
+  const [observation, setObservation] = useState('');
   const [givewayParticipant, setGivewayParticipant] = useState(true);
   const [sending, setSending] = useState(false);
-  const { setShowModal } = useContext(ModalContext);
   const { contactsList, setContactsList } = useContext(ContactContext);
 
   function addContactsToList(addedContact) {
     const contactsArray = contactsList;
     
     contactsArray.unshift(addedContact);
-    
     setContactsList(contactsArray);
   }
 
+  function goToContacts() {
+    props.history.push('/contacts');
+  }
+
   async function _handleSubmit(e) {
-    const newItem = qs.stringify({ name, phone, company, givewayParticipant });
+    const newItem = qs.stringify({ name, phone, company, givewayParticipant, observation });
     let contact = {};
     let message = '';
 
@@ -52,62 +55,64 @@ function NewContactForm() {
     setName('');
     setPhone('');
     setCompany('');
+    setObservation('');
     setGivewayParticipant(true);
     setSending(false);
-    setShowModal(false);
 
     window.open(`https://api.whatsapp.com/send?phone=55${phone.replace(/[(,),\-, ]/g, '')}&text=${message}`, '_blank');
+    goToContacts();
   }
 
   return (
-    <>
-      <div className="header">
-        <div className="close" onClick={() => setShowModal(false)}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-            <path d="M0 0h24v24H0z" fill="none"/>
-          </svg>
+    <div className={styles.overlay} onClick={e => e.target.className === styles.overlay && goToContacts()}>
+      <div className={styles.modalContainer}>
+        <div className={styles.header}>
+          <Link className={styles.closeContainer} to="/contacts">
+            <svg className={styles.close} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#212121" />
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          </Link>
+          Novo contato
         </div>
-        Novo contato
+
+        <form autoComplete="off" onSubmit={_handleSubmit}>
+          <div className={styles.formInputs}>
+            <div className={styles.formGroup}>
+              <label htmlFor="phone" className={styles.label}>Telefone</label>
+              <InputMask value={phone} type="tel" mask="(99) 9 9999-9999" id="phone" name="phone" autoFocus={true} className={styles.formInput} onChange={e => setPhone(e.target.value)} required />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="name" className={styles.label}>Nome</label>
+              <input value={name} type="text" id="name" name="name" className={styles.formInput} onChange={e => setName(e.target.value)} required />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="company" className={styles.label}>Empresa</label>
+              <input value={company} type="text" id="company" name="company" className={styles.formInput} onChange={e => setCompany(e.target.value)} required />
+            </div>
+
+            <div className={styles.formGroup}>
+              <ContentEditable html={observation} id="observation" className={styles.formEditableContent} onChange={e => setObservation(e.target.value)} />
+            </div>
+
+            {/* <div className={styles.formGroup}>
+              <label htmlFor="giveaway" className={styles.checkboxLabel}>
+                <input type="checkbox" name="giveway" id="giveaway" defaultChecked="true" className={styles.checkbox} onChange={e => setGivewayParticipant(e.target.checked) } />
+                Quer participar do sorteio
+              </label>
+            </div> */}
+          </div>
+          
+          <div className={styles.buttonContainer}>
+            <button type="submit" disabled={sending} className={styles.submitButton}>
+              {sending ? 'Enviando...' : 'Enviar'}
+            </button>
+          </div>
+        </form>
       </div>
-
-      <form autoComplete="off" onSubmit={_handleSubmit}>
-        <div className="form-inputs">
-          <div className="form-group">
-            <label htmlFor="phone">Telefone</label>
-            <InputMask value={phone} type="tel" mask="(99) 9 9999-9999" id="phone" name="phone" onChange={e => setPhone(e.target.value)} required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="name">Nome</label>
-            <input value={name} type="text" id="name" name="name" onChange={e => setName(e.target.value)} required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="company">Empresa</label>
-            <input value={company} type="text" id="company" name="company" onChange={e => setCompany(e.target.value)} required />
-          </div>
-
-          {/* <div className="form-group">
-            <label htmlFor="observation">Observação</label>
-            <textarea value={observation} id="observation" name="observation" onChange={e => setObservation(e.target.value)}></textarea>
-          </div> */}
-
-          <div className="form-group form-check">
-            <label htmlFor="giveaway" className="checkbox">
-              <input type="checkbox" name="giveway" id="giveaway" defaultChecked="true" onChange={e => setGivewayParticipant(e.target.checked) } />
-              Quer participar do sorteio
-            </label>
-          </div>
-        </div>
-        
-        <div className="button-container">
-          <button type="submit" disabled={sending}>
-            {sending ? 'Enviando...' : 'Enviar'}
-          </button>
-        </div>
-      </form>
-    </>
+    </div>
   );
 }
 
