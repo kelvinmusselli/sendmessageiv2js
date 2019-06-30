@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { validateLogin } from './helpers/auth';
 import ContactsList from './components/ContactsList/ContactsList';
 import AuthForm from './components/AuthForm/AuthForm';
@@ -18,9 +18,9 @@ function routes() {
     <Redirect from="*" to="/contacts" />
   </Switch>;
 
-  return <BrowserRouter>
+  return <HashRouter>
     { isLogged ? privateRoutes : publicRoutes }
-  </BrowserRouter>
+  </HashRouter>
 }
 
 export default routes;
