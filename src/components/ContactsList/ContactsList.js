@@ -22,15 +22,13 @@ function ContactsList() {
   }, []);
 
   function sendMessage({ phone }) {
-    let message = '';
-
-    message = window.encodeURIComponent(
+    const message = window.encodeURIComponent(
       'PARABÉNS\n\n' +
-      'Durante o Universo TOTVS, o Grupo iv2 estava sorteando 30 vagas para um workshop de React com o Fluig com os nossos especialistas e você foi um dos ganhadores!' +
+      'Durante o Universo TOTVS, o Grupo iv2 estava sorteando 30 vagas para um workshop de React com o Fluig com os nossos especialistas e você foi um dos ganhadores!\n\n' +
       'Segue informações:\n\n' +
-      'Data: 12/07/2019\n' +
-      'Horário: 09h00 \n' +
-      'Endereço: Rua Paulino Corado, 20 - Sala 110 - Jardim Santa Teresa, Jundiaí - SP\n\n' +
+      'Data: 19/07/2019\n' +
+      'Horário: 09h00\n' +
+      'Online: https://hangouts.google.com/call/v6Fts56GzyMVcQRY0pdLAEEE\n\n' +
       'O vídeo do sorteio está em nossa página do Linkedin: https://www.linkedin.com/company/iv2-tecnologia-e-sistemas/?viewAsMember=true\n\n' +
       'Venha aprender como conseguimos turbinar novas aplicações do fluig com esta tecnologia!\n\n' +
       'Por gentileza, confirmar presença até o dia 05/07.\n\n' +
