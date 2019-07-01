@@ -4,7 +4,7 @@ import Axios from 'axios';
 async function verifyAndUpdate() {
   const { data: { version } } = await Axios.get(`${API_ROOT}/frontEndVersion`);
 
-  if (+localStorage.appVersion !== version) {
+  if (localStorage.appVersion !== version) {
     update(version)
   }
 }
