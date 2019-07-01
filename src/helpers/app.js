@@ -1,12 +1,19 @@
-import { APP_VERSION } from '../config/app-config';
 import { API_ROOT } from '../config/api-config';
 import Axios from 'axios';
 
-async function updateAvailable() {
+async function verifyAndUpdate() {
   const { data: { version } } = await Axios.get(`${API_ROOT}/frontEndVersion`);
-  return APP_VERSION !== version;
+
+  if (+localStorage.appVersion !== version) {
+    update(version)
+  }
+}
+
+function update(version) {
+  localStorage.appVersion = version;
+  window.location.reload(true);
 }
 
 export {
-  updateAvailable
+  verifyAndUpdate
 };
