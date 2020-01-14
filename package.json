@@ -2,7 +2,7 @@
   "name": "sendmessageiv2js",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://raonidemarchi.github.io/sendmessageiv2js",
+  "homepage": "https://kelvinmusselli.github.io/sendmessageiv2js",
   "dependencies": {
     "axios": "^0.19.1",
     "node-sass": "^4.12.0",

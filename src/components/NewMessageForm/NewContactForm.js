@@ -51,12 +51,12 @@ function NewContactForm(props) {
         ",\n\n" +
         "Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n" +
         (givewayParticipant
-          ? "O seu número para participar do sorteio de um brinde é: " +
+          ? "O seu número para participar do sorteio de um Brinde!!! \n\n Seu código é: " +
             contact.data.giveawayNumber +
             ". Boa Sorte!\n"
           : "") +
-        "E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n" +
-        "Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n" +
+        "E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n\n" +
+        "Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n\n" +
         // "Easy Flow https://www.youtube.com/watch?v=cPg9qQ6KTGc&list=PL9e5jlUEjJCmuXox8bNEcStXZwbZ2GebF\n" +
         "Make it Easy https://www.youtube.com/watch?v=b3a3gfTEtpo&t\n\n" +
         "Employee Journey  https://youtu.be/J9_fWGw9gJcº\n\n" +
