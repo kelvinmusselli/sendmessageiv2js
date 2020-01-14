@@ -51,7 +51,7 @@ function NewContactForm(props) {
         ",\n\n" +
         "Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n" +
         (givewayParticipant
-          ? "O seu número para participar do sorteio de um Brinde!!! \n\n Seu código é: " +
+          ? "O seu número para participar do sorteio de um Brinde!!! \n\nSeu código é: " +
             contact.data.giveawayNumber +
             ". Boa Sorte!\n"
           : "") +
