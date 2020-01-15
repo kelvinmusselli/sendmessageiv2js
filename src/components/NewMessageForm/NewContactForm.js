@@ -56,6 +56,7 @@ function NewContactForm(props) {
             ". Boa Sorte!\n\n"
           : "") +
         "E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n\n" +
+        "CLIQUE E CONHEÇA O GRUPO IV2: https://youtu.be/oMJmbSuJ7vc\n\n" +
         "Conheça o Grupo iv2: https://drive.google.com/file/d/1X69rRSPQiiK3NJIYRGeuQtGcmXJYjooN/view?usp=sharing\n\n" +
         "Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n\n" +
         // "Easy Flow https://www.youtube.com/watch?v=cPg9qQ6KTGc&list=PL9e5jlUEjJCmuXox8bNEcStXZwbZ2GebF\n" +
