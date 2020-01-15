@@ -49,18 +49,18 @@ function NewContactForm(props) {
       "Olá " +
         contact.data.name +
         ",\n\n" +
-        "Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n" +
+        "Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n\n" +
         (givewayParticipant
           ? "Você está participando do sorteio de um Brinde!!! \n\nSeu código é: " +
             contact.data.giveawayNumber +
-            ". Boa Sorte!\n"
+            ". Boa Sorte!\n\n"
           : "") +
         "E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n\n" +
         "Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n\n" +
         // "Easy Flow https://www.youtube.com/watch?v=cPg9qQ6KTGc&list=PL9e5jlUEjJCmuXox8bNEcStXZwbZ2GebF\n" +
         "Make it Easy https://www.youtube.com/watch?v=b3a3gfTEtpo&t\n\n" +
-        "Employee Journey  https://youtu.be/J9_fWGw9gJcº\n\n" +
-        "GOF - Gestão de Objeto Fluig  https://youtu.be/Ca8SNRJa7x8\n\n" +
+        "Employee Journey  https://www.youtube.com/watch?v=J9_fWGw9gJc&t\n\n" +
+        "GOF - Gestão de Objeto Fluig  https://www.youtube.com/watch?v=_VpESoY_o3Q\n\n" +
         "Qualquer dúvida , estamos à disposição :)" +
         "\n\nAbraço,\nGrupo iv2"
     );
