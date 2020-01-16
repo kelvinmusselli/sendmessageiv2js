@@ -30,7 +30,7 @@ function ContactsList() {
     const message = window.encodeURIComponent(
       "Parabéns " +
         name +
-        "\n\n!" +
+        "!\n\n" +
         "Seu código " +
         giveawayNumber +
         " foi sorteado e ganhou um brinde personalizado do Grupo iv2 😀\n\n" +
