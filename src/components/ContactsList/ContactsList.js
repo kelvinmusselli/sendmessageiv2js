@@ -28,14 +28,15 @@ function ContactsList() {
     // console.log(givewayParticipant);
 
     const message = window.encodeURIComponent(
-      ` Parabéns ${name}\n\n! 
-
-        Seu código ${giveawayNumber} foi sorteado e ganhou um brinde personalizado do Grupo iv2 😀 
-
-        Para retirar basta comparecer ao nosso stand hoje até às 15 horas e apresentar essa mensagem! 
-
-        Abraços 
-        Equipe iv2`
+      "Parabéns " +
+        name +
+        "\n\n!" +
+        "Seu código " +
+        giveawayNumber +
+        " foi sorteado e ganhou um brinde personalizado do Grupo iv2 😀\n\n" +
+        "Para retirar basta comparecer ao nosso stand hoje até às 15 horas e apresentar essa mensagem!\n\n\n" +
+        "Abraços" +
+        "Equipe iv2"
     );
 
     window.open(
