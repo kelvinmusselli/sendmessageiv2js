@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a645de273af6b46384b068bfbacc97a5",
+    "revision": "98e9e94b123689d31509f6213ec9bea2",
     "url": "/sendmessageiv2js/index.html"
   },
   {
-    "revision": "697619b10744cc5d5eb5",
+    "revision": "44e700f2ebe935fac39a",
     "url": "/sendmessageiv2js/static/css/main.248bd244.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sendmessageiv2js/static/js/2.7233054d.chunk.js.LICENSE"
   },
   {
-    "revision": "697619b10744cc5d5eb5",
-    "url": "/sendmessageiv2js/static/js/main.4f4991eb.chunk.js"
+    "revision": "44e700f2ebe935fac39a",
+    "url": "/sendmessageiv2js/static/js/main.c98e90dc.chunk.js"
   },
   {
     "revision": "c5406fe1b1179ab9a608",
