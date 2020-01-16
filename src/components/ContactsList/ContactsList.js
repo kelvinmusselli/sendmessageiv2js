@@ -28,25 +28,14 @@ function ContactsList() {
     // console.log(givewayParticipant);
 
     const message = window.encodeURIComponent(
-      "Olá " +
-        name +
-        ",\n\n" +
-        "Agradecemos a sua visita em nosso Stand, foi um prazer recebê-lo!\n\n" +
-        (givewayParticipant
-          ? "Você está participando do sorteio de um Brinde!!! \n\nSeu código é: " +
-            giveawayNumber +
-            ". Boa Sorte!\n\n"
-          : "") +
-        "E conforme conversamos, segue o material sobre os Apps e soluções da iv2.\n\n" +
-        "CLIQUE E CONHEÇA O GRUPO IV2: https://youtu.be/oMJmbSuJ7vc\n\n" +
-        "Conheça o Grupo iv2: https://drive.google.com/file/d/1X69rRSPQiiK3NJIYRGeuQtGcmXJYjooN/view?usp=sharing\n\n" +
-        "Easy Quality https://www.youtube.com/watch?v=-xYYd9CbCo4\n\n" +
-        // "Easy Flow https://www.youtube.com/watch?v=cPg9qQ6KTGc&list=PL9e5jlUEjJCmuXox8bNEcStXZwbZ2GebF\n" +
-        "Make it Easy https://www.youtube.com/watch?v=9A9AlwLFLO0\n\n" +
-        "Employee Journey  https://www.youtube.com/watch?v=J9_fWGw9gJc&t\n\n" +
-        "GOF - Gestão de Objeto Fluig  https://www.youtube.com/watch?v=_VpESoY_o3Q\n\n" +
-        "Qualquer dúvida , estamos à disposição :)" +
-        "\n\nAbraço,\nGrupo iv2"
+      ` Parabéns ${name}\n\n! 
+
+        Seu código ${giveawayNumber} foi sorteado e ganhou um brinde personalizado do Grupo iv2 😀 
+
+        Para retirar basta comparecer ao nosso stand hoje até às 15 horas e apresentar essa mensagem! 
+
+        Abraços 
+        Equipe iv2`
     );
 
     window.open(
